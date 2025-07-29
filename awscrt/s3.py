@@ -42,6 +42,7 @@ class CrossProcessLock(NativeResource):
 
     def __enter__(self):
         self.acquire()
+        return self
 
     def release(self):
         _awscrt.s3_cross_process_lock_release(self._binding)
@@ -101,6 +102,9 @@ class S3ChecksumAlgorithm(IntEnum):
 
     SHA256 = 4
     """SHA-256"""
+
+    CRC64NVME = 5
+    """CRC64NVME"""
 
 
 class S3ChecksumLocation(IntEnum):
